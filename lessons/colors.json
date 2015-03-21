@@ -1,0 +1,23 @@
+[
+{ "hebrew": "שָׁחוֹר", "modern hebrew": "שחור", "english": "black", "english phonetic": "shakhor" },
+{ "hebrew": "לָבָן", "modern hebrew": "לבן", "english": "white", "english phonetic": "lavan" },
+{ "hebrew": "אָפוֹר", "modern hebrew": "אפור", "english": "gray", "english phonetic": "afor" },
+{ "hebrew": "כָּחוֹל", "modern hebrew": "כחול", "english": "blue", "english phonetic": "kakhol" },
+{ "hebrew": "כָּחוֹל כֵּהֶה", "modern hebrew": "כחול כהה", "english": "navy blue", "english phonetic": "kakhol kayheh" },
+{ "hebrew": "תְכֵלֶת", "modern hebrew": "תכלת", "english": "sky blue", "english phonetic": "t'khaylet" },
+{ "hebrew": "יָרוֹק", "modern hebrew": "ירוק", "english": "green", "english phonetic": "yarok" },
+{ "hebrew": "יְרַקְרַק", "modern hebrew": "ירקרק", "english": "greenish", "english phonetic": "y'rakRAK" },
+{ "hebrew": "צָהוֹב", "modern hebrew": "צהוב", "english": "yellow", "english phonetic": "tsa'hov" },
+{ "hebrew": "צְהַבְהַב", "modern hebrew": "צהבהב", "english": "yellowish", "english phonetic": "ts'havHAV" },
+{ "hebrew": "כָּתוֹם", "modern hebrew": "כתום", "english": "orange", "english phonetic": "katom" },
+{ "hebrew": "אַדוֹם", "modern hebrew": "אדום", "english": "red", "english phonetic": "adom" },
+{ "hebrew": "וָרוֹד", "modern hebrew": "ורוד", "english": "pink", "english phonetic": "varod" },
+{ "hebrew": "אַרְגָמָן", "modern hebrew": "ארגמן", "english": "purple", "english phonetic": "argaMAN" },
+{ "hebrew": "סָגוֹל", "modern hebrew": "סגול", "english": "violet", "english phonetic": "sagol" },
+{ "hebrew": "חוּם", "modern hebrew": "חום", "english": "brown", "english phonetic": "khoom" },
+{ "hebrew": "בֶּזי", "modern hebrew": "בזי", "english": "beige", "english phonetic": "bezh" },
+{ "hebrew": "קְרֶם", "modern hebrew": "קרם", "english": "cream", "english phonetic": "krem" },
+{ "hebrew": "כֶּסֶף", "modern hebrew": "כסף", "english": "silver", "english phonetic": "KEsef" },
+{ "hebrew": "זָהָב", "modern hebrew": "זהב", "english": "gold", "english phonetic": "za'hav" },
+{ "hebrew": "רַב־גוֹנִ", "modern hebrew": "רב־גונ", "english": "multi-colored", "english phonetic": "rav-gonee" }
+]

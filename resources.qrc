@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>lessons/alphabet.json</file>
+        <file>lessons/colors.json</file>
+        <file>lessons/common1.json</file>
+        <file>lessons/pronounspossessives.json</file>
+        <file>lessons/common2.json</file>
+        <file>lessons/common3.json</file>
+    </qresource>
+</RCC>
