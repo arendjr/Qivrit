@@ -21,18 +21,24 @@ class ShinKeyEventFilter : public QObject {
                     uint shin[] = { 0x05E9, 0 };
                     if (keyEvent->key() == 0x05E6) {
                         uint sinDot[] = { 0x05C1, 0 };
-                        object->event(&QKeyEvent(event->type(), 0x05E9, Qt::NoModifier, QString::fromUcs4(shin)));
-                        object->event(&QKeyEvent(event->type(), 0x05C1, Qt::NoModifier, QString::fromUcs4(sinDot)));
+                        sendShinKey(object, event->type(), 0x05E9, QString::fromUcs4(shin));
+                        sendShinKey(object, event->type(), 0x05C1, QString::fromUcs4(sinDot));
                         return true;
                     } else if (keyEvent->key() == 0x05E9) {
                         uint shinDot[] = { 0x05C2, 0 };
-                        object->event(&QKeyEvent(event->type(), 0x05E9, Qt::NoModifier, QString::fromUcs4(shin)));
-                        object->event(&QKeyEvent(event->type(), 0x05C2, Qt::NoModifier, QString::fromUcs4(shinDot)));
+                        sendShinKey(object, event->type(), 0x05E9, QString::fromUcs4(shin));
+                        sendShinKey(object, event->type(), 0x05C2, QString::fromUcs4(shinDot));
                         return true;
                     }
                 }
             }
             return QObject::eventFilter(object, event);
+        }
+
+    private:
+        void sendShinKey(QObject *object, QEvent::Type eventType, int keyCode, const QString &key) {
+            QKeyEvent event(eventType, keyCode, Qt::NoModifier, key);
+            object->event(&event);
         }
 };
 

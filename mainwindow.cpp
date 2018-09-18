@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_mode(Home) {
 
     ui->setupUi(this);
+    ui->stackedWidget->setCurrentIndex(0);
 
     QFont font = ui->modernHebrewLineEdit->font();
     font.setPointSize(font.pointSize() + 4);
@@ -192,7 +193,7 @@ void MainWindow::onSaveButtonClicked() {
 
     if (m_editFileName.isEmpty()) {
         m_editFileName = QFileDialog::getSaveFileName(this, tr("Save Lesson"),
-            QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
+            QStandardPaths::standardLocations(QStandardPaths::HomeLocation).first(),
             tr("Lesson files (*.json)")
         );
         if (m_editFileName.isEmpty()) {
@@ -214,17 +215,17 @@ void MainWindow::onSaveButtonClicked() {
 void MainWindow::onOpenLinkClicked() {
 
     if (ui->saveButton->isEnabled()) {
-        int buttonNumber = QMessageBox::question(this, qApp->applicationName(),
-            tr("There are unsaved changes in the lesson. Are you sure you want to open another lesson?"),
-            tr("Open"), tr("Keep Editing"), QString(), 1
-        );
-        if (buttonNumber == 0) {
+        if (!confirm(
+            tr("There are unsaved changes in the lesson. "
+               "Are you sure you want to open another lesson?"),
+            tr("Open"), tr("Keep Editing")
+        )) {
             return;
         }
     }
 
     m_editFileName = QFileDialog::getOpenFileName(this, tr("Open Lesson"),
-        QDesktopServices::storageLocation(QDesktopServices::HomeLocation),
+        QStandardPaths::standardLocations(QStandardPaths::HomeLocation).first(),
         tr("Lesson files (*.json)")
     );
     if (m_editFileName.isEmpty()) {
@@ -248,16 +249,26 @@ void MainWindow::onOpenLinkClicked() {
 void MainWindow::onExitLinkClicked() {
 
     if (ui->saveButton->isEnabled()) {
-        int buttonNumber = QMessageBox::question(this, qApp->applicationName(),
+        if (!confirm(
             tr("There are unsaved changes in the lesson. Are you sure you want to exit?"),
-            tr("Exit"), tr("Keep Editing"), QString(), 1
-        );
-        if (buttonNumber == 0) {
+            tr("Exit"), tr("Keep Editing")
+        )) {
             return;
         }
     }
 
     returnToHome();
+}
+
+bool MainWindow::confirm(const QString &text, const QString &okLabel, const QString &cancelLabel) {
+    QMessageBox messageBox;
+    messageBox.setText(text);
+    QPushButton *okButton = messageBox.addButton(okLabel, QMessageBox::DestructiveRole);
+    messageBox.addButton(cancelLabel, QMessageBox::RejectRole);
+
+    messageBox.exec();
+
+    return messageBox.clickedButton() == okButton;
 }
 
 void MainWindow::setUpShortcuts() {

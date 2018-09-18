@@ -1,7 +1,10 @@
 #include "lesson.h"
-#include "qjson/json_driver.hh"
 
+#include <QDebug>
 #include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QVariantMap>
 
 
@@ -47,18 +50,17 @@ void Lesson::load(const QString &fileName) {
         return;
     }
 
-    bool error;
-    JSonDriver driver;
-    QVariantList content = driver.parse(&file, &error).toList();
-    if (error) {
+    QByteArray content = file.readAll();
+    QJsonDocument document = QJsonDocument::fromJson(content);
+    if (!document.isArray()) {
         qWarning() << "Could not read JSON lesson data from file" << fileName;
         return;
     }
 
-    for (QVariantList::ConstIterator it = content.constBegin();
-         it != content.constEnd(); ++it) {
-        QString question = QString::fromUtf8((*it).toMap()[m_questionLanguage].toByteArray());
-        QString answer = QString::fromUtf8((*it).toMap()[m_answerLanguage].toByteArray());
+    for (auto value : document.array()) {
+        auto object = value.toObject();
+        QString question = object[m_questionLanguage].toString();
+        QString answer = object[m_answerLanguage].toString();
         if (!question.isEmpty() && !answer.isEmpty()) {
             m_questions[question] = answer;
         }

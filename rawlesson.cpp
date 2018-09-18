@@ -1,7 +1,10 @@
 #include "rawlesson.h"
-#include "qjson/json_driver.hh"
 
+#include <QDebug>
 #include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QVariantMap>
 
 
@@ -23,21 +26,19 @@ bool RawLesson::load(const QString &fileName) {
         return false;
     }
 
-    bool error;
-    JSonDriver driver;
-    QVariantList content = driver.parse(&file, &error).toList();
-    if (error) {
+    QJsonDocument document = QJsonDocument::fromJson(file.readAll());
+    if (!document.isArray()) {
         qWarning() << "Could not read JSON lesson data from file" << fileName;
         return false;
     }
 
-    for (QVariantList::ConstIterator it = content.constBegin();
-         it != content.constEnd(); ++it) {
+    for (auto value : document.array()) {
+        auto object = value.toObject();
         QMap<QString, QString> map;
-        map["hebrew"] = QString::fromUtf8((*it).toMap()["hebrew"].toByteArray());
-        map["modern hebrew"] = QString::fromUtf8((*it).toMap()["modern hebrew"].toByteArray());
-        map["english"] = QString::fromUtf8((*it).toMap()["english"].toByteArray());
-        map["english phonetic"] = QString::fromUtf8((*it).toMap()["english phonetic"].toByteArray());
+        map["hebrew"] = object["hebrew"].toString();
+        map["modern hebrew"] = object["modern hebrew"].toString();
+        map["english"] = object["english"].toString();
+        map["english phonetic"] = object["english phonetic"].toString();
         m_translations.append(map);
     }
 

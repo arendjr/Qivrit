@@ -59,6 +59,9 @@ class MainWindow : public QMainWindow {
         QString m_editFileName;
         int m_translationIndex;
 
+        bool confirm(const QString &text,
+                     const QString &okLabel = QLatin1Literal("OK"),
+                     const QString &cancelLabel = QLatin1Literal("Cancel"));
         void setUpShortcuts();
         void connectSignals();
         void proceedToNextQuestion();

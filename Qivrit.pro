@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT += core gui
+QT += core gui widgets
 
 TARGET = Qivrit
 TEMPLATE = app
@@ -14,18 +14,12 @@ SOURCES += \
     lessonselectiondialog.cpp \
     main.cpp \
     mainwindow.cpp \
-    qjson/json_driver.cc \
-    qjson/json_parser.cc \
-    qjson/json_scanner.cpp \
     rawlesson.cpp
 
 HEADERS  += \
     lesson.h \
     lessonselectiondialog.h \
     mainwindow.h \
-    qjson/json_driver.hh \
-    qjson/json_parser.hh \
-    qjson/json_scanner.h \
     rawlesson.h \
     shinkeyeventfilter.h
 
