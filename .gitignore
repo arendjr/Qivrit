@@ -1,5 +1,8 @@
 .qmake.stash
 Makefile
+Qivrit
 Qivrit.pro.user
 *.o
+moc_*
+qrc_*
 ui_*.h
